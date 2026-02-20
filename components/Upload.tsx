@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import {useOutletContext} from "react-router";
 import {CheckCircle2, ImageIcon, UploadIcon} from "lucide-react";
-import {PROGRESS_INCREMENT, REDIRECT_DELAY_MS, PROGRESS_INTERVAL_MS} from "../lib/constants";
+import {PROGRESS_INCREMENT, REDIRECT_DELAY_MS, PROGRESS_INTERVAL_MS, MAX_UPLOAD_SIZE, MAX_UPLOAD_SIZE_MB} from "../lib/constants";
 
 interface UploadProps {
   onComplete?: (base64Data: string) => void;
@@ -11,8 +11,8 @@ const Upload = ({ onComplete }: UploadProps) => {
   const [file, setFile] = useState<File | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [progress, setProgress] = useState(0);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const { isSignedIn } = useOutletContext<AuthContext>();
 
@@ -32,6 +32,11 @@ const Upload = ({ onComplete }: UploadProps) => {
   const processFile = useCallback((file: File) => {
     if (!isSignedIn) return;
 
+    if (file.size > MAX_UPLOAD_SIZE) {
+      alert(`File size exceeds the ${MAX_UPLOAD_SIZE_MB}MB limit.`);
+      return;
+    }
+
     setFile(file);
     setProgress(0);
 
@@ -40,7 +45,7 @@ const Upload = ({ onComplete }: UploadProps) => {
       setFile(null);
       setProgress(0);
     };
-    reader.onloadend = () => {
+    reader.onload = () => {
       const base64Data = reader.result as string;
 
       intervalRef.current = setInterval(() => {
@@ -81,9 +86,13 @@ const Upload = ({ onComplete }: UploadProps) => {
     if (!isSignedIn) return;
 
     const droppedFile = e.dataTransfer.files[0];
-    const allowedTypes = ['image/jpeg', 'image/png'];
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
     if (droppedFile && allowedTypes.includes(droppedFile.type)) {
-      processFile(droppedFile);
+      if (droppedFile.size <= MAX_UPLOAD_SIZE) {
+        processFile(droppedFile);
+      } else {
+        alert(`File size exceeds the ${MAX_UPLOAD_SIZE_MB}MB limit.`);
+      }
     }
   };
 
@@ -92,7 +101,12 @@ const Upload = ({ onComplete }: UploadProps) => {
 
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
-      processFile(selectedFile);
+      if (selectedFile.size <= MAX_UPLOAD_SIZE) {
+        processFile(selectedFile);
+      } else {
+        alert(`File size exceeds the ${MAX_UPLOAD_SIZE_MB}MB limit.`);
+        e.target.value = ''; // Reset input
+      }
     }
   };
 
@@ -122,7 +136,7 @@ const Upload = ({ onComplete }: UploadProps) => {
                 "Click to upload or just drag and drop"
               ): ("Sign in or sign up with Puter to upload")}
             </p>
-            <p className="help">Maximum file size 50 MB.</p>
+            <p className="help">Maximum file size {MAX_UPLOAD_SIZE_MB} MB.</p>
           </div>
         </div>
       ) : (

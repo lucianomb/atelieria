@@ -24,6 +24,10 @@ export const UNAUTHORIZED_STATUSES = [401, 403];
 // Image Dimensions
 export const IMAGE_RENDER_DIMENSION = 1024;
 
+// File Upload Limits
+export const MAX_UPLOAD_SIZE_MB = 50;
+export const MAX_UPLOAD_SIZE = MAX_UPLOAD_SIZE_MB * 1024 * 1024;
+
 export const ROOMIFY_RENDER_PROMPT = `
 **OBJECTIVE:** Transform the provided 2D floor plan into a **highly realistic, orthographic top-down 3D architectural visualization**.
 
