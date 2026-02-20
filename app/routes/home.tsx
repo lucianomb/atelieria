@@ -2,6 +2,8 @@ import type { Route } from "./+types/home";
 import Navbar from "../../components/Navbar";
 import {ArrowRight, ArrowUpRight, Clock, Layers} from "lucide-react";
 import Button from "../../components/ui/Button";
+import Upload from "../../components/Upload";
+import {useNavigate} from "react-router";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -11,6 +13,14 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
+  const navigate = useNavigate();
+
+  const handleUploadComplete = async (base64Image: string) => {
+    const newId = Date.now().toString();
+
+    navigate(`/visualizer/${newId}`);
+  }
+
   return (
     <div className="home">
       <Navbar />
@@ -21,22 +31,22 @@ export default function Home() {
             <div className="pulse"></div>
           </div>
 
-          <p>Introducing Atelieria 3.0</p>
+          <p>Just Released Atelieria 2.0</p>
         </div>
 
-        <h1>Build beautiful spaces at the speed of though with Atelieria</h1>
+        <h1>Craft extraordinary spaces at the speed of thought with Atelieria</h1>
 
         <p className="subtitle">
-          Atelieria is an AI-first design environment that helps you visualize, render, and ship architectural projects faster than ever.
+          Atelieria is an AI-driven design studio that empowers you to visualize, render, and deliver architectural work with precision, elegance, and unprecedented speed.
         </p>
 
         <div className="actions">
           <a href="#upload" className="cta">
-            Start Building <ArrowRight className="icon" />
+            Begin Your Project <ArrowRight className="icon" />
           </a>
 
           <Button variant="outline" size="lg" className="demo">
-            Watch Demo
+            Watch the Film
           </Button>
         </div>
 
@@ -52,7 +62,7 @@ export default function Home() {
               <p>Supports JPG, PNG, formats up to 10MB</p>
             </div>
 
-            <p>Upload images</p>
+            <Upload onComplete={handleUploadComplete} />
           </div>
         </div>
       </section>
@@ -62,7 +72,7 @@ export default function Home() {
           <div className="section-head">
             <div className="copy">
               <h2>Projects</h2>
-              <p>Your latest work and shared community projects, all in one place.</p>
+              <p>A curated space for your latest creations and selected community works — thoughtfully organized in one refined environment.</p>
             </div>
           </div>
           <div className="projects-grid">
