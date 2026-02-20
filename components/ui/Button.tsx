@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
+export type ButtonVariant = "outline" | "primary" | "secondary" | "ghost" | "danger";
 export type ButtonSize = "sm" | "md" | "lg";
 
 export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
