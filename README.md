@@ -10,9 +10,6 @@ Atelieria is a sleek, dark‑mode studio for transforming floor plans into stunn
 - Modern, high‑contrast UI (Plus Jakarta Sans, glass surfaces, neon accents)
 - Built with React Router 7, Tailwind CSS v4, TypeScript
 
-## 🖼️ Preview
-> Add screenshots or a short GIF here showing: Home → Upload → Visualizer → Compare.
-
 ## 🚀 Tech Stack
 - React 19 + React Router 7
 - Tailwind CSS 4
