@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3defa939-3baf-490b-b5fa-86bca6954a1c" name="Changes" comment="" />
+    <list default="true" id="3defa939-3baf-490b-b5fa-86bca6954a1c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/visualizer.$id.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/visualizer.$id.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,6 +81,9 @@
     <option name="endsOfQuotaMs" value="1772355611494" />
     <option name="spentUsd" value="0.067495294" />
   </component>
+  <component name="RecapUselessUpdatesCounter">
+    <option name="suspendCountdown" value="8" />
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -92,7 +100,7 @@
       <updated>1771325346714</updated>
       <workItem from="1771325347767" duration="6071000" />
       <workItem from="1771501015711" duration="5016000" />
-      <workItem from="1771932790369" duration="16079000" />
+      <workItem from="1771932790369" duration="18280000" />
     </task>
     <servers />
   </component>
